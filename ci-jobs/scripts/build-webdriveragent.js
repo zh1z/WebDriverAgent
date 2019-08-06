@@ -20,8 +20,8 @@ async function buildWebDriverAgent (xcodeVersion) {
   await exec('/bin/bash', ['./Scripts/build.sh'], {env, cwd: rootDir});
 
   // Create bundles folder
-  await mkdirp('bundles');
   const pathToBundles = path.resolve(rootDir, 'bundles');
+  await mkdirp(pathToBundles);
 
   // Start creating tarball
   const uncompressedDir = path.resolve(rootDir, 'uncompressed');
