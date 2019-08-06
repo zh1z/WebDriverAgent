@@ -23,6 +23,8 @@ jobs:
       displayName: Make Resources Folder
     - script: node ./ci-jobs/scripts/build-webdriveragents.js
       displayName: Build WebDriverAgents
+    - script: ls -lf
+      displayName: List File Contents
     - script: ls ./bundles
       displayName: List WDA Bundles
     - task: PublishPipelineArtifact@0
