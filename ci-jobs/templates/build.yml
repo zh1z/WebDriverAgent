@@ -19,6 +19,8 @@ jobs:
         versionSpec: '12.x' 
     - script: npm install
       displayName: Install Node Modules
+    - script: rm /usr/local/bin/xcpretty && sudo gem install -n /usr/local/bin xcpretty
+      displayName: Install XCPretty
     - script: mkdir -p Resources/WebDriverAgent.bundle
       displayName: Make Resources Folder
     - script: node ./ci-jobs/scripts/build-webdriveragents.js
