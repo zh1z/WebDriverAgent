@@ -54,6 +54,7 @@
     "ios-uicatalog": "^3.5.0",
     "mocha": "^8.0.1",
     "pre-commit": "^1.2.2",
+    "semantic-release": "^17.1.1",
     "sinon": "^9.0.2",
     "wd": "^1.11.4"
   },
