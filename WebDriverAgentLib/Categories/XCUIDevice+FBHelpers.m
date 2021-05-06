@@ -249,7 +249,12 @@ static bool fb_isLocked;
              withDescriptionFormat:@"The button '%@' is unknown. Only the following button names are supported: %@", buttonName, supportedButtonNames]
             buildError:error];
   }
+
   [[XCUIRemote sharedRemote] pressButton:remoteButton];
+
+  // TODO: this is only for tvOS
+  // https://developer.apple.com/documentation/xctest/xcuiremote/1627475-pressbutton
+  [[XCUIRemote sharedRemote] pressButton:remoteButton forDuration:10];
   return YES;
 }
 #else

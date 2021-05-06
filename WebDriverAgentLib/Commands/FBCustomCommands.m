@@ -243,6 +243,7 @@
 + (id<FBResponsePayload>)handlePressButtonCommand:(FBRouteRequest *)request
 {
   NSError *error;
+  // TODO: add duration attribute
   if (![XCUIDevice.sharedDevice fb_pressButton:(id)request.arguments[@"name"] error:&error]) {
     return FBResponseWithUnknownError(error);
   }

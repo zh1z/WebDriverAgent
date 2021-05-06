@@ -82,6 +82,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)fb_pressButton:(NSString *)buttonName error:(NSError **)error;
 
+
+- (BOOL)fb_pressButton:(NSString *)buttonName forDuration:(int)duration error:(NSError **)error;
+
+
 /**
  Activates Siri service voice recognition with the given text to parse
 
