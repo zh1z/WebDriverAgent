@@ -254,18 +254,19 @@ static bool fb_isLocked;
             buildError:error];
   }
 
-  if (duration < 0) {
-    [[XCUIRemote sharedRemote] pressButton:remoteButton];
-  } else {
+  (duration < 0)
+    // https://developer.apple.com/documentation/xctest/xcuiremote/1627476-pressbutton
+    ? [[XCUIRemote sharedRemote] pressButton:remoteButton]
     // https://developer.apple.com/documentation/xctest/xcuiremote/1627475-pressbutton
-    [[XCUIRemote sharedRemote] pressButton:remoteButton forDuration:duration];
-  }
+    : [[XCUIRemote sharedRemote] pressButton:remoteButton forDuration:duration];
+
   return YES;
 #endif
 }
 
 #if !TARGET_OS_TV
-- (BOOL)fb_pressButton:(NSString *)buttonName error:(NSError **)error
+- (BOOL)fb_pressButton:(NSString *)buttonName
+                 error:(NSError **)error
 {
   NSMutableArray<NSString *> *supportedButtonNames = [NSMutableArray array];
   XCUIDeviceButton dstButton = 0;
