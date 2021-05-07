@@ -190,9 +190,13 @@ static bool fb_isLocked;
   }
 }
 
-#if TARGET_OS_TV
-- (BOOL)fb_pressButton:(NSString *)buttonName error:(NSError **)error
+- (BOOL)fb_pressButton:(NSString *)buttonName
+           forDuration:(NSTimeInterval)duration
+                 error:(NSError **)error
 {
+#if !TARGET_OS_TV
+  return [self fb_pressButton:buttonName error:error];
+#else
   NSMutableArray<NSString *> *supportedButtonNames = [NSMutableArray array];
   NSInteger remoteButton = -1; // no remote button
   if ([buttonName.lowercaseString isEqualToString:@"home"]) {
@@ -250,15 +254,17 @@ static bool fb_isLocked;
             buildError:error];
   }
 
-  [[XCUIRemote sharedRemote] pressButton:remoteButton];
-
-  // TODO: this is only for tvOS
-  // https://developer.apple.com/documentation/xctest/xcuiremote/1627475-pressbutton
-  [[XCUIRemote sharedRemote] pressButton:remoteButton forDuration:10];
+  if (duration < 0) {
+    [[XCUIRemote sharedRemote] pressButton:remoteButton];
+  } else {
+    // https://developer.apple.com/documentation/xctest/xcuiremote/1627475-pressbutton
+    [[XCUIRemote sharedRemote] pressButton:remoteButton forDuration:duration];
+  }
   return YES;
+#endif
 }
-#else
 
+#if !TARGET_OS_TV
 - (BOOL)fb_pressButton:(NSString *)buttonName error:(NSError **)error
 {
   NSMutableArray<NSString *> *supportedButtonNames = [NSMutableArray array];
