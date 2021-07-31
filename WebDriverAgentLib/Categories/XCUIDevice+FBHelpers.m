@@ -79,7 +79,7 @@ static bool fb_isLocked;
   }
   [self pressButton:XCUIDeviceButtonHome];
   [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:FBHomeButtonCoolOffTime]];
-#if !TARGET_OS_TV
+#if TARGET_OS_IOS
   if (SYSTEM_VERSION_LESS_THAN(@"10.0")) {
     [[FBApplication fb_activeApplication] swipeRight];
   } else {
