@@ -185,7 +185,7 @@
   }
   CGPoint midPoint = CGPointMake(visibleRect.origin.x + visibleRect.size.width / 2,
                                  visibleRect.origin.y + visibleRect.size.height / 2);
-#if !TARGET_OS_TV // TV has no orientation, so it does not need to coordinate
+#if TARGET_OS_IOS // TV has no orientation, so it does not need to coordinate
   XCElementSnapshot *appElement = ancestors.count > 0 ? [ancestors lastObject] : self;
   CGRect appFrame = appElement.frame;
   CGRect windowFrame = nil == parentWindow ? selfFrame : parentWindow.frame;

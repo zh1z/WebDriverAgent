@@ -31,7 +31,7 @@ BOOL FBSizeFuzzyEqualToSize(CGSize size1, CGSize size2, CGFloat threshold);
 /*! Returns whether rect are equal within given threshold */
 BOOL FBRectFuzzyEqualToRect(CGRect rect1, CGRect rect2, CGFloat threshold);
 
-#if !TARGET_OS_TV
+#if TARGET_OS_IOS
 /*! Inverts point if necessary to match location on screen */
 CGPoint FBInvertPointForApplication(CGPoint point, CGSize screenSize, UIInterfaceOrientation orientation);
 

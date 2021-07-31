@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#if !TARGET_OS_TV
+#if TARGET_OS_IOS
 @interface XCUIDevice (FBRotation)
 
 /**

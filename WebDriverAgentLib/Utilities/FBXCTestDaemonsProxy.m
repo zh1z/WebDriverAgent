@@ -25,6 +25,7 @@ static Class FBXCTRunnerDaemonSessionClass = nil;
 static dispatch_once_t onceTestRunnerDaemonClass;
 + (void)load
 {
+  [[FBXCTRunnerDaemonSessionClass sharedSession] unloadAccessibility: 0];
   // XCTRunnerDaemonSession class is only available since Xcode 8.3
   dispatch_once(&onceTestRunnerDaemonClass, ^{
     FBXCTRunnerDaemonSessionClass = objc_lookUpClass("XCTRunnerDaemonSession");

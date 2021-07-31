@@ -14,7 +14,7 @@
 #import "XCUIElement+FBUtilities.h"
 
 
-#if !TARGET_OS_TV
+#if TARGET_OS_IOS
 @implementation XCUIElement (FBTap)
 
 - (BOOL)fb_tapWithError:(NSError **)error

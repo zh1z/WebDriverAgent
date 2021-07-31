@@ -223,7 +223,7 @@
   }
 
   CGRect elementRect = selfSnapshot.frame;
-#if !TARGET_OS_TV
+#if TARGET_OS_IOS
   UIInterfaceOrientation orientation = self.application.interfaceOrientation;
   if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
     // Workaround XCTest bug when element frame is returned as in portrait mode even if the screenshot is rotated
