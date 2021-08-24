@@ -69,6 +69,8 @@ inline static BOOL isSnapshotTypeAmongstGivenTypes(XCElementSnapshot* snapshot, 
 
 inline static BOOL valuesAreEqual(id value1, id value2);
 
+inline static BOOL valuesAreEqualOrBlank(id value1, id value2);
+
 inline static BOOL isNilOrEmpty(id value);
 
 - (BOOL)fb_framelessFuzzyMatchesElement:(XCElementSnapshot *)snapshot
@@ -79,12 +81,14 @@ inline static BOOL isNilOrEmpty(id value);
     return [self.wdUID isEqualToString:(snapshot.wdUID ?: @"")];
   }
   
+  // Sometimes value and placeholderValue of a correct match from different snapshots are not the same (one is nil and one is a blank string)
+  // Therefore taking it into account when comparing
   return self.elementType == snapshot.elementType &&
     valuesAreEqual(self.identifier, snapshot.identifier) &&
     valuesAreEqual(self.title, snapshot.title) &&
     valuesAreEqual(self.label, snapshot.label) &&
-    valuesAreEqual(self.value, snapshot.value) &&
-    valuesAreEqual(self.placeholderValue, snapshot.placeholderValue);
+    valuesAreEqualOrBlank(self.value, snapshot.value) &&
+    valuesAreEqualOrBlank(self.placeholderValue, snapshot.placeholderValue);
 }
 
 - (NSArray<XCElementSnapshot *> *)fb_descendantsCellSnapshots
@@ -128,6 +132,28 @@ inline static BOOL isNilOrEmpty(id value);
     }
     return targetCellSnapshot;
 }
+
+- (CGRect) fb_visibleFrameWithFallback
+{
+  CGRect thisVisibleFrame = [self visibleFrame];
+  if (CGRectIsEmpty(thisVisibleFrame))
+  {
+    NSDictionary *visibleFrameDict = (NSDictionary*)[self fb_attributeValue:@"XC_kAXXCAttributeVisibleFrame"];
+    if (visibleFrameDict != nil)
+    {
+      id x = [visibleFrameDict valueForKey:@"X"];
+      id y = [visibleFrameDict valueForKey:@"Y"];
+      id height = [visibleFrameDict valueForKey:@"Height"];
+      id width = [visibleFrameDict valueForKey:@"Width"];
+      if (x != nil && y != nil && height != nil && width != nil)
+      {
+        thisVisibleFrame = CGRectMake([x doubleValue], [y doubleValue], [width doubleValue], [height doubleValue]);
+      }
+    }
+  }
+  return thisVisibleFrame;
+}
+
 @end
 
 inline static BOOL isSnapshotTypeAmongstGivenTypes(XCElementSnapshot* snapshot, NSArray<NSNumber *> *types)
@@ -143,6 +169,11 @@ inline static BOOL isSnapshotTypeAmongstGivenTypes(XCElementSnapshot* snapshot, 
 inline static BOOL valuesAreEqual(id value1, id value2)
 {
   return value1 == value2 || [value1 isEqual:value2];
+}
+
+inline static BOOL valuesAreEqualOrBlank(id value1, id value2)
+{
+  return valuesAreEqual(value1, value2) || (isNilOrEmpty(value1) && isNilOrEmpty(value2));
 }
 
 inline static BOOL isNilOrEmpty(id value)

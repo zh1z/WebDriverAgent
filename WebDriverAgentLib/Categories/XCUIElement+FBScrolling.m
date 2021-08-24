@@ -185,9 +185,11 @@ const CGFloat FBScrollTouchProportion = 0.75f;
   }
 
   // Cell is now visible, but it might be only partialy visible, scrolling till whole frame is visible
-  targetCellSnapshot = self.fb_takeSnapshot.fb_parentCellSnapshot;
-  CGVector scrollVector = CGVectorMake(targetCellSnapshot.visibleFrame.size.width - targetCellSnapshot.frame.size.width,
-                                       targetCellSnapshot.visibleFrame.size.height - targetCellSnapshot.frame.size.height
+  targetCellSnapshot = [([self fb_cachedSnapshot] ?: [self fb_takeSnapshot]) fb_parentCellSnapshot];
+  CGRect visibleFrame = targetCellSnapshot.fb_visibleFrameWithFallback;
+  
+  CGVector scrollVector = CGVectorMake(visibleFrame.size.width - targetCellSnapshot.frame.size.width,
+                                       visibleFrame.size.height - targetCellSnapshot.frame.size.height
                                        );
   if (![scrollView fb_scrollByVector:scrollVector inApplication:self.application error:error]) {
     return NO;
