@@ -136,19 +136,23 @@ inline static BOOL isNilOrEmpty(id value);
 - (CGRect)fb_visibleFrameWithFallback
 {
   CGRect thisVisibleFrame = [self visibleFrame];
-  if (!CGRectIsEmpty(thisVisibleFrame))
+  if (!CGRectIsEmpty(thisVisibleFrame)) {
     return thisVisibleFrame;
+  }
   
   NSDictionary *visibleFrameDict = (NSDictionary*)[self fb_attributeValue:@"XC_kAXXCAttributeVisibleFrame"];
-  if (visibleFrameDict != nil) {
-    id x = [visibleFrameDict objectForKey:@"X"];
-    id y = [visibleFrameDict objectForKey:@"Y"];
-    id height = [visibleFrameDict objectForKey:@"Height"];
-    id width = [visibleFrameDict objectForKey:@"Width"];
-    if (x != nil && y != nil && height != nil && width != nil) {
-      thisVisibleFrame = CGRectMake([x doubleValue], [y doubleValue], [width doubleValue], [height doubleValue]);
-    }
+  if (visibleFrameDict == nil) {
+    return thisVisibleFrame;
   }
+  
+  id x = [visibleFrameDict objectForKey:@"X"];
+  id y = [visibleFrameDict objectForKey:@"Y"];
+  id height = [visibleFrameDict objectForKey:@"Height"];
+  id width = [visibleFrameDict objectForKey:@"Width"];
+  if (x != nil && y != nil && height != nil && width != nil) {
+    return CGRectMake([x doubleValue], [y doubleValue], [width doubleValue], [height doubleValue]);
+  }
+  
   return thisVisibleFrame;
 }
 

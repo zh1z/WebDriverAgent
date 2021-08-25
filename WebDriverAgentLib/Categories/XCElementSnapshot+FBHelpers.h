@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return the snapshot visibleFrame
  */
-- (CGRect) fb_visibleFrameWithFallback;
+- (CGRect)fb_visibleFrameWithFallback;
 
 @end
 
