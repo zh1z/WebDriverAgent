@@ -184,7 +184,9 @@ const CGFloat FBScrollTouchProportion = 0.75f;
      buildError:error];
   }
 
-  // Cell is now visible, but it might be only partialy visible, scrolling till whole frame is visible
+  // Cell is now visible, but it might be only partialy visible, scrolling till whole frame is visible.
+  // Sometimes, attempting to grab the parent snapshot of the target cell after scrolling is complete causes a stale element reference exception.
+  // Trying fb_cachedSnapshot first
   targetCellSnapshot = [([self fb_cachedSnapshot] ?: [self fb_takeSnapshot]) fb_parentCellSnapshot];
   CGRect visibleFrame = targetCellSnapshot.fb_visibleFrameWithFallback;
   
