@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FBSTFCommands : NSObject <FBCommandHandler>
 
+@interface XCElementSnapshotDouble : NSObject<XCUIElementAttributes>
+@property (readwrite, nullable) id value;
+@property (readwrite, nullable, copy) NSString *label;
 @end
 
 NS_ASSUME_NONNULL_END
