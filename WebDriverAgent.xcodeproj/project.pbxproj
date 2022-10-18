@@ -498,6 +498,10 @@
 		71F5BE50252F14EB00EE9EBA /* FBExceptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 71F5BE4D252F14EB00EE9EBA /* FBExceptions.h */; };
 		71F5BE51252F14EB00EE9EBA /* FBExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F5BE4E252F14EB00EE9EBA /* FBExceptions.m */; };
 		71F5BE52252F14EB00EE9EBA /* FBExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 71F5BE4E252F14EB00EE9EBA /* FBExceptions.m */; };
+		9D6D6B1628FE7A1E001C719B /* FBSTFCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D6B1428FE7A1E001C719B /* FBSTFCommands.m */; };
+		9D6D6B1728FE7A1E001C719B /* FBSTFCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D6B1428FE7A1E001C719B /* FBSTFCommands.m */; };
+		9D6D6B1828FE7A1E001C719B /* FBSTFCommands.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6D6B1528FE7A1E001C719B /* FBSTFCommands.h */; };
+		9D6D6B1928FE7A1E001C719B /* FBSTFCommands.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D6D6B1528FE7A1E001C719B /* FBSTFCommands.h */; };
 		AD35D06C1CF1C35500870A75 /* WebDriverAgentLib.framework in Copy frameworks */ = {isa = PBXBuildFile; fileRef = EE158A991CBD452B00A3E3F0 /* WebDriverAgentLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AD6C26941CF2379700F8B5FF /* FBAlert.h in Headers */ = {isa = PBXBuildFile; fileRef = AD6C26921CF2379700F8B5FF /* FBAlert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD6C26951CF2379700F8B5FF /* FBAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = AD6C26931CF2379700F8B5FF /* FBAlert.m */; };
@@ -1066,6 +1070,8 @@
 		71F5BE33252E5B2200EE9EBA /* FBElementSwipingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBElementSwipingTests.m; sourceTree = "<group>"; };
 		71F5BE4D252F14EB00EE9EBA /* FBExceptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBExceptions.h; sourceTree = "<group>"; };
 		71F5BE4E252F14EB00EE9EBA /* FBExceptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBExceptions.m; sourceTree = "<group>"; };
+		9D6D6B1428FE7A1E001C719B /* FBSTFCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBSTFCommands.m; sourceTree = "<group>"; };
+		9D6D6B1528FE7A1E001C719B /* FBSTFCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBSTFCommands.h; sourceTree = "<group>"; };
 		AD42DD2A1CF121E600806E5D /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		AD6C26921CF2379700F8B5FF /* FBAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBAlert.h; path = WebDriverAgentLib/FBAlert.h; sourceTree = SOURCE_ROOT; };
 		AD6C26931CF2379700F8B5FF /* FBAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = FBAlert.m; path = WebDriverAgentLib/FBAlert.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1364,7 +1370,7 @@
 		EEE5CABF1C80361500CBBDD9 /* IOSSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = IOSSettings.xcconfig; sourceTree = "<group>"; };
 		EEE9B4701CD02B88009D2030 /* FBRunLoopSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRunLoopSpinner.h; sourceTree = "<group>"; };
 		EEE9B4711CD02B88009D2030 /* FBRunLoopSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRunLoopSpinner.m; sourceTree = "<group>"; };
-		EEF9882A1C486603005CA669 /* WebDriverAgentRunner.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebDriverAgentRunner.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEF9882A1C486603005CA669 /* CiticBankWDA.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CiticBankWDA.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1577,7 +1583,7 @@
 			isa = PBXGroup;
 			children = (
 				EE836C021C0F118600D87246 /* UnitTests.xctest */,
-				EEF9882A1C486603005CA669 /* WebDriverAgentRunner.xctest */,
+				EEF9882A1C486603005CA669 /* CiticBankWDA.xctest */,
 				EE158A991CBD452B00A3E3F0 /* WebDriverAgentLib.framework */,
 				EE9B75D41CF7956C00275851 /* IntegrationApp.app */,
 				EE9B75EC1CF7956C00275851 /* IntegrationTests_1.xctest */,
@@ -1790,6 +1796,8 @@
 				EE9AB7541CAEDF0C008C271F /* FBDebugCommands.h */,
 				EE9AB7551CAEDF0C008C271F /* FBDebugCommands.m */,
 				EE9AB7561CAEDF0C008C271F /* FBElementCommands.h */,
+				9D6D6B1528FE7A1E001C719B /* FBSTFCommands.h */,
+				9D6D6B1428FE7A1E001C719B /* FBSTFCommands.m */,
 				EE9AB7571CAEDF0C008C271F /* FBElementCommands.m */,
 				EE9AB7581CAEDF0C008C271F /* FBFindElementCommands.h */,
 				EE9AB7591CAEDF0C008C271F /* FBFindElementCommands.m */,
@@ -2369,6 +2377,7 @@
 				641EE6952240C5CA00173FCB /* XCUIRecorderTimingMessage.h in Headers */,
 				641EE6962240C5CA00173FCB /* XCApplicationMonitor.h in Headers */,
 				641EE6972240C5CA00173FCB /* XCUIElement+FBForceTouch.h in Headers */,
+				9D6D6B1928FE7A1E001C719B /* FBSTFCommands.h in Headers */,
 				641EE6982240C5CA00173FCB /* FBRuntimeUtils.h in Headers */,
 				71F5BE50252F14EB00EE9EBA /* FBExceptions.h in Headers */,
 				641EE6992240C5CA00173FCB /* XCUIElement+FBPickerWheel.h in Headers */,
@@ -2542,6 +2551,7 @@
 				EE35AD371E3B77D600A02D78 /* XCSourceCodeTreeNodeEnumerator.h in Headers */,
 				EE158AB01CBD456F00A3E3F0 /* XCUIElement+FBIsVisible.h in Headers */,
 				71414ED42670A1EE003A8C5D /* LRUCache.h in Headers */,
+				9D6D6B1828FE7A1E001C719B /* FBSTFCommands.h in Headers */,
 				EE158AB41CBD456F00A3E3F0 /* XCUIElement+FBTap.h in Headers */,
 				EE158ADC1CBD456F00A3E3F0 /* FBResponsePayload.h in Headers */,
 				13815F6F2328D20400CDAB61 /* FBActiveAppDetectionPoint.h in Headers */,
@@ -2900,7 +2910,7 @@
 			);
 			name = WebDriverAgentRunner;
 			productName = XCTUITestRunner;
-			productReference = EEF9882A1C486603005CA669 /* WebDriverAgentRunner.xctest */;
+			productReference = EEF9882A1C486603005CA669 /* CiticBankWDA.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -3167,6 +3177,7 @@
 				641EE6242240C5CA00173FCB /* FBXCTestDaemonsProxy.m in Sources */,
 				641EE6252240C5CA00173FCB /* XCUIElement+FBTap.m in Sources */,
 				13DE7A58287CA1EC003243C6 /* FBXCElementSnapshotWrapper.m in Sources */,
+				9D6D6B1728FE7A1E001C719B /* FBSTFCommands.m in Sources */,
 				641EE6262240C5CA00173FCB /* FBMathUtils.m in Sources */,
 				641EE6272240C5CA00173FCB /* FBXCAXClientProxy.m in Sources */,
 			);
@@ -3283,6 +3294,7 @@
 				71414ED82670A1EE003A8C5D /* LRUCache.m in Sources */,
 				E444DC67249131890060D7EB /* HTTPDataResponse.m in Sources */,
 				EE158AD31CBD456F00A3E3F0 /* FBElementCache.m in Sources */,
+				9D6D6B1628FE7A1E001C719B /* FBSTFCommands.m in Sources */,
 				71930C4320662E1F00D3AFEC /* FBPasteboard.m in Sources */,
 				AD6C26951CF2379700F8B5FF /* FBAlert.m in Sources */,
 				EE158ABF1CBD456F00A3E3F0 /* FBElementCommands.m in Sources */,
@@ -4212,7 +4224,10 @@
 			baseConfigurationReference = EEE5CABF1C80361500CBBDD9 /* IOSSettings.xcconfig */;
 			buildSettings = {
 				CLANG_STATIC_ANALYZER_MODE = deep;
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9WL58F63LM;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = WebDriverAgentRunner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4224,8 +4239,10 @@
 					"$(inherited)",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.WebDriverAgentRunner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bankofcitic.wda;
+				PRODUCT_NAME = CiticBankWDA;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ydzd-wda";
 				USES_XCTRUNNER = YES;
 				WARNING_CFLAGS = (
 					"$(inherited)",
@@ -4260,6 +4277,9 @@
 			baseConfigurationReference = EEE5CABF1C80361500CBBDD9 /* IOSSettings.xcconfig */;
 			buildSettings = {
 				CLANG_STATIC_ANALYZER_MODE = deep;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9WL58F63LM;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = WebDriverAgentRunner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4272,8 +4292,10 @@
 					"$(inherited)",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.facebook.WebDriverAgentRunner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bankofcitic.wda;
+				PRODUCT_NAME = CiticBankWDA;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ydzd-wda";
 				USES_XCTRUNNER = YES;
 				WARNING_CFLAGS = (
 					"$(inherited)",
