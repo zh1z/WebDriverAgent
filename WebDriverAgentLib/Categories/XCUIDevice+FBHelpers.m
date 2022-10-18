@@ -55,7 +55,9 @@ static bool fb_isLocked;
 
 - (BOOL)fb_goToHomescreenWithError:(NSError **)error
 {
-  return [FBApplication fb_switchToSystemApplicationWithError:error];
+//  return [FBApplication fb_switchToSystemApplicationWithError:error];
+  [self pressButton:XCUIDeviceButtonHome];
+  return YES;
 }
 
 - (BOOL)fb_lockScreen:(NSError **)error
