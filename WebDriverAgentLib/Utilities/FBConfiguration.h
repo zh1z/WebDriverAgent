@@ -184,13 +184,6 @@ typedef NS_ENUM(NSInteger, FBConfigurationKeyboardPreference) {
 + (int)snapshotMaxDepth;
 
 /**
- Returns parameters for traversing elements tree from parents to children while requesting XCElementSnapshot.
-
- @return dictionary with parameters for element's snapshot request
-*/
-+ (NSDictionary *)snapshotRequestParameters;
-
-/**
  * Whether to use fast search result matching while searching for elements.
  * By default this is disabled due to https://github.com/appium/appium/issues/10101
  * but it still makes sense to enable it for views containing large counts of elements
@@ -300,6 +293,11 @@ typedef NS_ENUM(NSInteger, FBConfigurationKeyboardPreference) {
 + (NSString *)humanReadableScreenshotOrientation;
 
 #endif
+
+/**
+ Resets all session-specific settings to their default values
+ */
++ (void)resetSessionSettings;
 
 @end
 

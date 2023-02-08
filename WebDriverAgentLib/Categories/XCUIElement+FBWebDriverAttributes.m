@@ -9,8 +9,6 @@
 
 #import "XCUIElement+FBWebDriverAttributes.h"
 
-#import <objc/runtime.h>
-
 #import "FBElementTypeTransformer.h"
 #import "FBLogger.h"
 #import "FBMacros.h"
@@ -58,11 +56,15 @@
 
 - (id)forwardingTargetForSelector:(SEL)aSelector
 {
-  struct objc_method_description descr = protocol_getMethodDescription(@protocol(FBElement), aSelector, YES, YES);
-  SEL webDriverAttributesSelector = descr.name;
-  return nil == webDriverAttributesSelector
-    ? nil
-    : [FBXCElementSnapshotWrapper ensureWrapped:[self fb_snapshotForAttributeName:NSStringFromSelector(webDriverAttributesSelector)]];
+  static dispatch_once_t onceToken;
+  static NSSet<NSString *> *fbElementAttributeNames;
+  dispatch_once(&onceToken, ^{
+    fbElementAttributeNames = [FBElementUtils selectorNamesWithProtocol:@protocol(FBElement)];
+  });
+  NSString* attributeName = NSStringFromSelector(aSelector);
+  return [fbElementAttributeNames containsObject:attributeName]
+    ? [FBXCElementSnapshotWrapper ensureWrapped:[self fb_snapshotForAttributeName:attributeName]]
+    : nil;
 }
 
 @end
@@ -98,16 +100,21 @@
     value = [NSString stringWithFormat:@"%@", value];
   }
   return value;
- }
+}
 
-- (NSString *)wdName
++ (NSString *)wdNameWithSnapshot:(id<FBXCElementSnapshot>)snapshot
 {
-  NSString *identifier = self.identifier;
+  NSString *identifier = snapshot.identifier;
   if (nil != identifier && identifier.length != 0) {
     return identifier;
   }
-  NSString *label = self.label;
+  NSString *label = snapshot.label;
   return FBTransferEmptyStringToNil(label);
+}
+
+- (NSString *)wdName
+{
+  return [self.class wdNameWithSnapshot:self.snapshot];
 }
 
 - (NSString *)wdLabel
