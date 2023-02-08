@@ -41,6 +41,8 @@
 #import "FBXCodeCompatibility.h"
 #import "XCUIApplication+FBTouchAction.h"
 #import "FBXMLGenerationOptions.h"
+#import <PhotosUI/PhotosUI.h>
+
 
 @implementation FBSTFCommands
 
@@ -60,6 +62,7 @@
     [[FBRoute POST:@"/orientation_Control"].withoutSession respondWithTarget:self action:@selector(handleSetOrientation_Control:)],
     [[FBRoute GET:@"/orientation_Control"].withoutSession respondWithTarget:self action:@selector(handleGetOrientation_Control:)],
     [[FBRoute GET:@"/source_stf"].withoutSession respondWithTarget:self action:@selector(handleGetSourceCommand:)],
+    [[FBRoute POST:@"/download_image"].withoutSession respondWithTarget:self action:@selector(handleDownloadImageCommand:)],
     ];
 }
 
@@ -224,5 +227,49 @@ static NSString *const SOURCE_FORMAT_DESCRIPTION = @"description";
                                  });
 }
 
++ (id<FBResponsePayload>)handleDownloadImageCommand:(FBRouteRequest *)request {
+
+  NSLog(@"---handleDownloadImageCommand---开启下载图片---当前图片地址为--%@",request.arguments[@"url"]);
+  NSString *urlString = [NSString stringWithFormat:@"%@",request.arguments[@"url"]];
+  NSURL *url = [NSURL URLWithString:urlString];
+  if (urlString.length == 0) {
+    NSLog(@"请求图片地址为空 !!!");
+  }
+  
+  [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+          if (status == PHAuthorizationStatusAuthorized) {
+              dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                 dispatch_async(queue, ^{
+                     NSData *data = [[NSData alloc] initWithContentsOfURL: url];
+                     UIImage *image = [UIImage imageWithData:data];
+                     if (image) {
+                         NSLog(@"图片下载成功");
+                         dispatch_sync(dispatch_get_main_queue(), ^{
+                             UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+                         });
+                     } else {
+                         NSLog(@"<-----图片下载失败,请逐一检查如下部分----->");
+                         NSLog(@"图片下载失败, 1. 请检查应用是否授权-相册权限");
+                         NSLog(@"图片下载失败, 2. 请检查应用是否授权-网络");
+                         NSLog(@"图片下载失败, 3. 请检查图片-下载路径");
+                     }
+                 });
+          }else{
+              NSLog(@"相册未开启权限");
+          }
+      }];
+  return FBResponseWithOK();
+  
+}
+
++ (void)image:(UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo {
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+   }else{
+        msg = @"保存图片成功" ;
+   }
+    NSLog(@"%@",msg);
+}
 
 @end
